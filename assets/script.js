@@ -37,6 +37,18 @@ src="./assets/images/slideshow/"+slides[number]["image"]
 	const image = document.querySelector('.banner-img');
 	image.src = src
 	console.log(image.src)
+
+let tagLine = document.querySelector("#banner p")
+
+
+let sliderText = `
+	<p>${"Tirages haute définition grand format <span>pour vos bureaux et events</span>"}</p>
+`
+tagLine.innerHTML = sliderText
+
+
+
+
 }
 
 
@@ -75,6 +87,8 @@ dots.appendChild(dot);
 
 dot.addEventListener('click', slidedot)
 
+dot.classList.add("dot_selected");
+
 }
 
 function slidedot () {
@@ -87,15 +101,16 @@ console.log(this.getAttribute("data-index"))
 
 	number = this.getAttribute("data-index")
 
+	
 
-
-	src="./assets/images/slideshow/"+slides[number]["image"]
-	console.log(src)
-	const image = document.querySelector('.banner-img');
-	image.src = src
-	console.log(image.src)
 	
 
 }
+
+// Ajout de la classe dot_selected au premier dot (index 0)
+
+    
+  
+
 
 
