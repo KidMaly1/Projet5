@@ -22,6 +22,8 @@ console.log (nbslides)
 const flechedroite = document.querySelector('.arrow_right');
 const flechegauche = document.querySelector('.arrow_left');
 let number = 0;
+const dots = document.querySelectorAll('.dot');
+
 
 function slidesuivant() {
 	
@@ -32,27 +34,41 @@ function slidesuivant() {
 	
 	console.log(number)
 
-src="./assets/images/slideshow/"+slides[number]["image"]
+	displaySlide(number)
+
+}
+
+function displaySlide(number) {
+	src="./assets/images/slideshow/"+slides[number]["image"]
 	console.log(src)
 	const image = document.querySelector('.banner-img');
 	image.src = src
 	console.log(image.src)
 
+// Intégrer le texte tagLine de chaque slide
+
 let tagLine = document.querySelector("#banner p")
 
 
-let sliderText = `
-	<p>${"Tirages haute définition grand format <span>pour vos bureaux et events</span>"}</p>
-`
-tagLine.innerHTML = sliderText
 
-
+tagLine.innerHTML = slides[number]["tagLine"]
+dot = document.querySelector("#dot" +number)
 
 
 }
 
+// Affichage du dot_selected sur le slide actuel
+
+function dotSelected() {
+	if(number === 0) {
+		dot.classList.add("dot_selected");
+	}
+	
+}
+	
 
 flechedroite.addEventListener('click', slidesuivant)
+
 
 function slideprecedent() {
 	
@@ -62,18 +78,14 @@ if (number < 0) {
 }
 
 
-	src="./assets/images/slideshow/"+slides[number]["image"]
-	console.log(src)
-	const image = document.querySelector('.banner-img');
-	image.src = src
-	console.log(image.src)
+	displaySlide(number)
 
 	}
 
-	flechegauche.addEventListener('click', slideprecedent)
+flechegauche.addEventListener('click', slideprecedent)
 
 
-dots = document.querySelector('.dots');
+
 
 
 for (let compteur = 0; compteur < nbslides; compteur = compteur + 1) {
@@ -83,11 +95,13 @@ for (let compteur = 0; compteur < nbslides; compteur = compteur + 1) {
 dot.classList.add("dot") 
 dot.setAttribute("data-index", compteur);
 
-dots.appendChild(dot);
+dot.setAttribute("id", "dot"+compteur);
+
+
 
 dot.addEventListener('click', slidedot)
 
-dot.classList.add("dot_selected");
+
 
 }
 
@@ -101,15 +115,14 @@ console.log(this.getAttribute("data-index"))
 
 	number = this.getAttribute("data-index")
 
-	
+	displaySlide(number)
 
 	
 
 }
 
-// Ajout de la classe dot_selected au premier dot (index 0)
 
-    
+
   
 
 
